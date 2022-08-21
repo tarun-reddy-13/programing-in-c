@@ -72,41 +72,6 @@ int read_key()
     c=getch();
     return c;
 }
-
-int up_shift(int arr[][4])
-{
-    int i,j;
-    for(i=0;i<4;i++)
-    {
-        for(j=0;j<4;j++)
-            if(arr[i][j]==0)
-            break;
-        if(j<4)
-        break;
-    }
-    if(i==3)
-        return 0;
-    swap(&arr[i][j],&arr[i+1][j]);
-    return 1;
-}
-
-int down_shift(int arr[][4])
-{
-    int i,j;
-    for(i=0;i<4;i++)
-    {
-        for(j=0;j<4;j++)
-            if(arr[i][j]==0)
-                break;
-        if(j<4)
-            break;
-    }
-    if(i==0)
-        return 0;
-    swap(&arr[i][j],&arr[i-1][j]);
-    return 1;
-}
-
 int right_shift(int arr[][4])
 {
     int i,j;
@@ -140,7 +105,39 @@ int left_shift(int arr[][4])
     swap(&arr[i][j],&arr[i][j+1]);
     return 1;
 }
+int up_shift(int arr[][4])
+{
+    int i,j;
+    for(i=0;i<4;i++)
+    {
+        for(j=0;j<4;j++)
+            if(arr[i][j]==0)
+            break;
+        if(j<4)
+        break;
+    }
+    if(i==3)
+        return 0;
+    swap(&arr[i][j],&arr[i+1][j]);
+    return 1;
+}
 
+int down_shift(int arr[][4])
+{
+    int i,j;
+    for(i=0;i<4;i++)
+    {
+        for(j=0;j<4;j++)
+            if(arr[i][j]==0)
+                break;
+        if(j<4)
+            break;
+    }
+    if(i==0)
+        return 0;
+    swap(&arr[i][j],&arr[i-1][j]);
+    return 1;
+}
 void rule(int arr[][4])
 {
     system("cls");
@@ -172,7 +169,7 @@ void rule(int arr[][4])
     printf("\n5.You can exit the game at any time by pressing 'E' or 'e' ");
     printf("\nSo Try to win in minimum no of move \n");
     printf("\n         Happy gaming , Good Luck\n");
-    printf("\nEnter any key to start.....");
+    printf("\nEnter any key to start...........");
     x=read_key();
 }
 int main()
@@ -196,40 +193,39 @@ int main()
             show_mat(arr);
             int key=read_key();
             switch(key)
-            {
-            case 69:                  
-            case 101:             
-                    printf("\n     Thanks for Playing ! \n");
-                    printf("\nHit 'Enter' to exit the game \n");
-                    key=read_key();
-                	break;
-            case 72:        
-                    if(up_shift(arr))
-                        moves--;
-                    break;
-            case 80:        
-                    if(down_shift(arr))
-                        moves--;
-                    break;
-            case 77:           
-                    if(right_shift(arr))
-                        moves--;
-                    break;
-            case 75:           
-                    if(left_shift(arr))
-                        moves--;
-                    break;
-            default:
-                printf("\n\nNot Allowed");
+            {                 
+                case 101:             
+                        printf("\n     Thanks for Playing ! \n");
+                        printf("\nHit 'Enter' to exit the game \n");
+                        key=read_key();
+                        break;
+                case 72:        
+                        if(up_shift(arr))
+                            moves--;
+                        break;
+                case 80:        
+                        if(down_shift(arr))
+                            moves--;
+                        break;
+                case 77:           
+                        if(right_shift(arr))
+                            moves--;
+                        break;
+                case 75:           
+                        if(left_shift(arr))
+                            moves--;
+                        break;
+                default:
+                    printf("\n\nNot Allowed");
         }
 
     }
-    if(!moves)
+    if(moves==0)
         printf("\nYOU LOSE !\n");
     else
     {
         printf("\n************Congratualization***********\n");
-        printf("               You have Won       ");
+        printf("*************You have Won****************");
     }
     char check;
     printf("\nWant to play again ? \n");
