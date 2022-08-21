@@ -1,5 +1,4 @@
 //number shifting game---proj 1
-//Tarun Reddy Thota
 #include<stdio.h>
 #include<conio.h>
 #include<stdlib.h>
